@@ -28,10 +28,15 @@ public class Employee {
 
     }
 
-    public int raisedSalary(int percent){
-        int salaryAfterPercent = (int) (getSalary() + (getSalary()*percent/100));
-        this.salary = salaryAfterPercent;
-        return (int) this.salary;
+    public int raisedSalary(int percent)throws Exception{
+        if (percent<0){
+            throw new Exception("percent must be > 0");
+        }else {
+            int salaryAfterPercent = (int) (getSalary() + (getSalary()*percent/100));
+            this.salary = salaryAfterPercent;
+            return (int) this.salary;
+        }
+
     }
 
     @Override

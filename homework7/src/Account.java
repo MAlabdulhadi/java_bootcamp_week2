@@ -42,11 +42,14 @@ public class Account {
         this.balance = balance;
     }
 
-    public int credit(int amount){//سحب
+    public int credit(int amount)throws Exception{//سحب
 
-        this.balance = getBalance()-amount;
-
-        return this.balance;
+        if (amount>this.balance){
+            throw new Exception("the balance < amount");
+        }else{
+            this.balance = getBalance()-amount;
+            return this.balance;
+        }
 
 
     }
@@ -57,13 +60,17 @@ public class Account {
         return this.balance;
 
     }
-    public int transferTo(Account another,int amount){
+    public int transferTo(Account another,int amount)throws Exception{
 
-        int current_balance = another.getBalance();
-        int balanceAfterTranfer = current_balance + amount;
-        this.balance = this.balance - amount;
-        another.setBalance(balanceAfterTranfer);
-        return balanceAfterTranfer;
+        if (this.balance<amount){
+            throw new Exception("don't have this balance");
+        }else{
+            int current_balance = another.getBalance();
+            int balanceAfterTranfer = current_balance + amount;
+            this.balance = this.balance - amount;
+            another.setBalance(balanceAfterTranfer);
+            return balanceAfterTranfer;
+        }
 
     }
 
